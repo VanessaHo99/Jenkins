@@ -1,20 +1,6 @@
 <?php 
     session_start();
 	
-	if(isset($_POST['submit']))
-	{
-		if((isset($_POST['email']) && $_POST['email'] !='') && (isset($_POST['password']) && $_POST['password'] !=''))
-		{
-			$email = trim($_POST['email']);
-			$password = trim($_POST['password']);
-			
-			if($email == "user@example.com")
-			{	
-			
-			}
-		
-		}
-	}
     function verifyPwd($pwd){
         $path = $fopen("https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10-million-password-list-top-1000.txt", "r")
          
@@ -28,7 +14,7 @@
                 header("Location:login.php");
             }
     }
-    <form method="post" action="" name="signin-form">
+    <form action = "index.php" method = "post">
     <div class="form-element">
         <label>Password</label>
         <input type="password" name="password" required />
