@@ -1,22 +1,28 @@
 <?php
 use PHPUnit\Framework\TestCase;
-require 'GumballMachine.php';
+require 'login.php';
 
-class GumballMachineTest extends TestCase {
+class LoginTest extends TestCase {
 
-	public $gumballMachineInstance;
+	public $loginInstance;
 	
 	public function setup():void {
 		
-		$this->gumballMachineInstance = new GumballMachine();
+		$this->loginInstance = new Login();
 	}
 	
-	public function testIfWheelWorks() {
-		
-		$this->gumballMachineInstance->setGumballs(100);
-		
-		$this->gumballMachineInstance->turnWheel();
-		
-		$this->assertEquals(99, $this->gumballMachineInstance->getGumballs());
+	public function verifyPwd($pwd) {
+		$path = $fopen("https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10-million-password-list-top-1000.txt", "r")
+         
+        while (!feof($path)) 
+            $line = fgets($path, 4096)
+            if (preg_match($pwd, $line)){
+                header("Location:index.php");
+            }
+            else
+            {
+                header("Location:login.php");
+            }
+    }
 	}
 }
